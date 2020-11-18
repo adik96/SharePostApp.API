@@ -8,7 +8,6 @@ namespace SharePostApp.DB.Entities.Concrete
     {
         public string Email { get; set; }
         public string PasswordHash { get; set; }
-        public byte[] Salt { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool IsActive { get; set; }
@@ -24,23 +23,22 @@ namespace SharePostApp.DB.Entities.Concrete
             SetEmail(email);
             SetFirstName(firstname);
             SetLastName(lastname);
-            SetPassword(hash, salt);
+            SetPassword(hash);
             SetCreatedAt(createdAt);
             SetActive(true);
         }
 
-        public void ChangePassword(string hash, byte[] salt)
+        public void ChangePassword(string hash)
         {
-            SetPassword(hash, salt);
+            SetPassword(hash);
         }
 
-        private void SetPassword(string hash, byte[] salt)
+        private void SetPassword(string hash)
         {
             if (string.IsNullOrEmpty(hash))
                 throw new Exception("Password is wrong");
 
             PasswordHash = hash;
-            Salt = salt;
         }
 
         private void SetEmail(string email)
@@ -64,5 +62,7 @@ namespace SharePostApp.DB.Entities.Concrete
         }
 
         public void SetActive(bool isActive) => this.IsActive = isActive;
+
+        public string FullName => this.FirstName + " " + this.LastName;
     }
 }

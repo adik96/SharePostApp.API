@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SharePostApp.DB.Repositories.Abstract
 {
-    public interface IBaseRepository<T> where T : Entity
+    public interface IBaseRepository<T> : IRepository where T : Entity
     {
         Task<IList<T>> GetListAsync();
 
