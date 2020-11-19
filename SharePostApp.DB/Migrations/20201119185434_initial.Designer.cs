@@ -10,7 +10,7 @@ using SharePostApp.DB;
 namespace SharePostApp.DB.Migrations
 {
     [DbContext(typeof(SharePostContext))]
-    [Migration("20201118162542_initial")]
+    [Migration("20201119185434_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,6 +91,17 @@ namespace SharePostApp.DB.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Posts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 30L,
+                            Content = "Content post 1",
+                            CreatedAt = new DateTime(2020, 11, 19, 18, 54, 34, 241, DateTimeKind.Utc).AddTicks(5183),
+                            LastModifiedAt = new DateTime(2020, 11, 19, 18, 54, 34, 241, DateTimeKind.Utc).AddTicks(6025),
+                            Title = "Post 1",
+                            UserId = 30L
+                        });
                 });
 
             modelBuilder.Entity("SharePostApp.DB.Entities.Concrete.PostCategory", b =>
@@ -112,7 +123,7 @@ namespace SharePostApp.DB.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("ArticleCategories");
+                    b.ToTable("PostCategories");
                 });
 
             modelBuilder.Entity("SharePostApp.DB.Entities.Concrete.User", b =>
@@ -143,6 +154,17 @@ namespace SharePostApp.DB.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 30L,
+                            CreatedAt = new DateTime(2020, 11, 19, 18, 54, 34, 21, DateTimeKind.Utc).AddTicks(3418),
+                            FirstName = "test",
+                            IsActive = true,
+                            LastName = "user",
+                            PasswordHash = "$2a$11$iJeuHDb2TXldGxfY4R/Gx.th8BJz0c6s.UeaTDlL3fHOPLpt2YkaK"
+                        });
                 });
 
             modelBuilder.Entity("SharePostApp.DB.Entities.Concrete.Comment", b =>

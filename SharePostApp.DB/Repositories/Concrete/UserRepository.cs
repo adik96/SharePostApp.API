@@ -1,5 +1,7 @@
-﻿using SharePostApp.DB.Entities.Concrete;
+﻿using Microsoft.EntityFrameworkCore;
+using SharePostApp.DB.Entities.Concrete;
 using SharePostApp.DB.Repositories.Abstract;
+using System.Threading.Tasks;
 
 namespace SharePostApp.DB.Repositories.Concrete
 {
@@ -11,6 +13,11 @@ namespace SharePostApp.DB.Repositories.Concrete
             : base(context)
         {
             this.context = context;
+        }
+
+        public Task<User> GetByEmail(string email)
+        {
+            return _dbSet.FirstOrDefaultAsync(u => u.Email == email);
         }
     }
 }

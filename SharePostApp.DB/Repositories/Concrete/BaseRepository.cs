@@ -14,7 +14,7 @@ namespace SharePostApp.DB.Repositories.Concrete
     public class BaseRepository<T> : IBaseRepository<T>, IRepositoryAsNoTrackingAsync<T> where T : Entity
     {
         private readonly SharePostContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public BaseRepository(SharePostContext context)
         {

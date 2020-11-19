@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SharePostApp.API.Extensions;
 using SharePostApp.DB;
 using SharePostApp.DB.Modules;
 using SharePostApp.INFRASTRUCTURE.Modules;
@@ -35,6 +36,7 @@ namespace SharePostApp.API
         {
             services.AddControllers();
             services.AddMediatR(typeof(IService));
+            services.AddJwtAuthentication(Configuration);
             services.AddAutoMapper(typeof(IService));
             services.AddSwaggerGen(c =>
             {
@@ -63,6 +65,8 @@ namespace SharePostApp.API
                 c.RoutePrefix = string.Empty;
 
             });
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

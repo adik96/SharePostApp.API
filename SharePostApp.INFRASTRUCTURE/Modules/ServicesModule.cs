@@ -1,9 +1,10 @@
 ﻿using Autofac;
-using SharePostApp.INFRASTRUCTURE.Services.Abstract;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
+//using AutoMapper.Configuration;
+using SharePostApp.Core.Settings;
+using SharePostApp.INFRASTRUCTURE.Services.Abstract;
+using SharePostApp.INFRASTRUCTURE.Services.Concrete;
+using Microsoft.Extensions.Configuration;
 
 namespace SharePostApp.INFRASTRUCTURE.Modules
 {
