@@ -1,7 +1,5 @@
 ﻿using SharePostApp.DB.Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SharePostApp.INFRASTRUCTURE.Commands.PostCommands;
 using SharePostApp.INFRASTRUCTURE.DTOs;
 
 namespace SharePostApp.INFRASTRUCTURE.Configuration.Mapper
@@ -12,6 +10,11 @@ namespace SharePostApp.INFRASTRUCTURE.Configuration.Mapper
         {
             CreateMap<Post, PostDTO>()
                 .ForMember(dest => dest.Author, opts => opts.MapFrom(src => src.User.FullName));
+
+            CreateMap<AddPostCommand, Post>();
+
+            CreateMap<UpdatePostCommand, Post>()
+                .ForMember(dest => dest.Id, opts => opts.Ignore());
         }
         
     }

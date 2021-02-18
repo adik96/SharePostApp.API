@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using SharePostApp.INFRASTRUCTURE.DTOs.Auth;
-using System.Collections.Generic;
 
 namespace SharePostApp.INFRASTRUCTURE.Queries.User
 {

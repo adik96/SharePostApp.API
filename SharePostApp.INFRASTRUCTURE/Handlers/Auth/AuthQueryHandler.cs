@@ -43,7 +43,7 @@ namespace SharePostApp.INFRASTRUCTURE.Handlers.Auth
         private async Task<User> CheckIfUserExsist(AuthQuery request)
         {
             var user = await _userRepository.GetByEmail(request.Email);
-            if (!user.IsActive)
+            if (user is null || !user.IsActive)
                 throw new MainException(ErrorCode.NotFound);
 
             return user;

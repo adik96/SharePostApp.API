@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+//using Microsoft.OpenApi.Models;
 using SharePostApp.API.Extensions;
 using SharePostApp.DB;
 using SharePostApp.DB.Modules;
@@ -38,14 +38,7 @@ namespace SharePostApp.API
             services.AddMediatR(typeof(IService));
             services.AddJwtAuthentication(Configuration);
             services.AddAutoMapper(typeof(IService));
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "SharePost API",
-                });
-            });
+            services.AddSwagger();
 
             services.AddDbContext<SharePostContext>(options
                 => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

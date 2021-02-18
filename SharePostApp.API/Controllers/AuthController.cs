@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharePostApp.API.Controllers;
-using SharePostApp.INFRASTRUCTURE.Queries;
 using SharePostApp.INFRASTRUCTURE.Queries.User;
 
 namespace SimpulBlog.API.Controllers
