@@ -4,7 +4,7 @@ using SharePostApp.DB.Entities.Abstract;
 
 namespace SharePostApp.DB.Entities.Concrete
 {
-    public class Post : Entity, ICreatedAt
+    public class Post : Entity, ICreatedAt, ILastModifiedAt
     {
         public string Title { get; set; }
         public string Content { get; set; }

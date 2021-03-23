@@ -42,13 +42,20 @@ namespace SharePostApp.DB.Repositories.Concrete
 
         public async Task AddAsync(T entity)
         {
+            if (entity is ICreatedAt)
+                (entity as ICreatedAt).CreatedAt = DateTime.UtcNow;
+
             await _dbSet.AddAsync(entity);
+            await SaveChangesAsync();
         }
 
         public async Task UpdateAsync(T entity)
         {
             if (entity == null)
                 new MainException(ErrorCode.NullException);
+
+            if (entity is ILastModifiedAt) 
+                (entity as ILastModifiedAt).LastModifiedAt = DateTime.UtcNow;
 
             await Task.FromResult(_dbSet.Update(entity));
             await SaveChangesAsync();

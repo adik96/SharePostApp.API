@@ -16,7 +16,7 @@ namespace SharePostApp.INFRASTRUCTURE.Handlers.Post
     {
         private readonly IPostRepository _postRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IMapper mapper;
+        private readonly IMapper _mapper;
 
         private IQueryable<dbEntities.Post> posts;
 
@@ -24,7 +24,7 @@ namespace SharePostApp.INFRASTRUCTURE.Handlers.Post
         {
             this._postRepository = postRepository;
             this._categoryRepository = categoryRepository;
-            this.mapper = mapper;
+            this._mapper = mapper;
         }
 
         public async Task<ICollection<PostDTO>> Handle(GetPostsQuery request, CancellationToken cancellationToken)
@@ -40,7 +40,7 @@ namespace SharePostApp.INFRASTRUCTURE.Handlers.Post
 
         private ICollection<PostDTO> GetDtoResponse()
         {
-            return mapper.Map<ICollection<PostDTO>>(posts);
+            return _mapper.Map<ICollection<PostDTO>>(posts);
         }
     }
 }

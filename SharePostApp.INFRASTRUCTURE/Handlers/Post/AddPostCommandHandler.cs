@@ -12,14 +12,14 @@ namespace SharePostApp.INFRASTRUCTURE.Handlers.Post
     public class AddPostCommandHandler : IRequestHandler<AddPostCommand, long>
     {
         private readonly IPostRepository _postRepository;
-        private readonly IMapper mapper;
+        private readonly IMapper _mapper;
 
         private dbEntities.Post _newPost;
 
         public AddPostCommandHandler(IPostRepository postRepository, IMapper mapper)
         {
             this._postRepository = postRepository;
-            this.mapper = mapper;
+            this._mapper = mapper;
         }
 
         public async Task<long> Handle(AddPostCommand request, CancellationToken cancellationToken)
@@ -33,8 +33,7 @@ namespace SharePostApp.INFRASTRUCTURE.Handlers.Post
 
         private dbEntities.Post CreateNewPost(AddPostCommand model)
         {
-            var post = mapper.Map<dbEntities.Post>(model);
-            post.CreatedAt = DateTime.UtcNow;
+            var post = _mapper.Map<dbEntities.Post>(model);
 
             return post;
         }

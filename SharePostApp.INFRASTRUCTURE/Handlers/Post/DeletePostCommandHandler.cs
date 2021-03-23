@@ -12,14 +12,14 @@ namespace SharePostApp.INFRASTRUCTURE.Handlers.Post
     public class DeletePostCommandHandler : IRequestHandler<DeletePostCommand, Unit>
     {
         private readonly IPostRepository _postRepository;
-        private readonly IMapper mapper;
+        private readonly IMapper _mapper;
 
         private dbEntities.Post _deletePost;
 
         public DeletePostCommandHandler(IPostRepository postRepository, IMapper mapper)
         {
             this._postRepository = postRepository;
-            this.mapper = mapper;
+            this._mapper = mapper;
         }
 
         public async Task<Unit> Handle(DeletePostCommand request, CancellationToken cancellationToken)
@@ -38,7 +38,7 @@ namespace SharePostApp.INFRASTRUCTURE.Handlers.Post
 
         private void UpdatePost(UpdatePostCommand model, dbEntities.Post dbPost)
         {
-            mapper.Map(model, dbPost);
+            _mapper.Map(model, dbPost);
             dbPost.LastModifiedAt = DateTime.UtcNow;
         }
     }

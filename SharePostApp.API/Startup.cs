@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-//using Microsoft.OpenApi.Models;
 using SharePostApp.API.Extensions;
+using SharePostApp.API.Filters;
 using SharePostApp.DB;
 using SharePostApp.DB.Modules;
 using SharePostApp.INFRASTRUCTURE.Modules;
@@ -34,7 +34,9 @@ namespace SharePostApp.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(opts => {
+                opts.Filters.Add(typeof(ValidationFilter));
+            });
             services.AddMediatR(typeof(IService));
             services.AddJwtAuthentication(Configuration);
             services.AddAutoMapper(typeof(IService));
@@ -51,6 +53,10 @@ namespace SharePostApp.API
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            //use custom exceptions middleware
+            app.UseMainExceptionHandler();
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

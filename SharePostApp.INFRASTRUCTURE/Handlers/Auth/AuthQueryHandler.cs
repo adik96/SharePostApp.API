@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using SharePostApp.Core.Exceptions;
-using SharePostApp.DB.Entities.Concrete;
+using dbEntities = SharePostApp.DB.Entities.Concrete;
 using SharePostApp.DB.Repositories.Abstract;
 using SharePostApp.INFRASTRUCTURE.DTOs.Auth;
 using SharePostApp.INFRASTRUCTURE.Queries.User;
 using SharePostApp.INFRASTRUCTURE.Services.Abstract;
-using SharePostApp.INFRASTRUCTURE.Services.Concrete;
 
 namespace SharePostApp.INFRASTRUCTURE.Handlers.Auth
 {
@@ -40,7 +36,7 @@ namespace SharePostApp.INFRASTRUCTURE.Handlers.Auth
             return new AuthResponseDTO(GenerateToken(user.Id));
         }
 
-        private async Task<User> CheckIfUserExsist(AuthQuery request)
+        private async Task<dbEntities.User> CheckIfUserExsist(AuthQuery request)
         {
             var user = await _userRepository.GetByEmail(request.Email);
             if (user is null || !user.IsActive)
@@ -49,7 +45,7 @@ namespace SharePostApp.INFRASTRUCTURE.Handlers.Auth
             return user;
         }
 
-        private void VerifyPassword(AuthQuery request, User user)
+        private void VerifyPassword(AuthQuery request, dbEntities.User user)
         {
             _passwordService.VerifyPassword(request.Password, user.PasswordHash);
         }

@@ -18,51 +18,6 @@ namespace SharePostApp.DB.Entities.Concrete
 
         public User() { }
 
-        public User(string email, string firstname, string lastname, string hash, byte[] salt, DateTime createdAt)
-        {
-            SetEmail(email);
-            SetFirstName(firstname);
-            SetLastName(lastname);
-            SetPassword(hash);
-            SetCreatedAt(createdAt);
-            SetActive(true);
-        }
-
-        public void ChangePassword(string hash)
-        {
-            SetPassword(hash);
-        }
-
-        private void SetPassword(string hash)
-        {
-            if (string.IsNullOrEmpty(hash))
-                throw new Exception("Password is wrong");
-
-            PasswordHash = hash;
-        }
-
-        private void SetEmail(string email)
-        {
-            Email = email;
-        }
-
-        private void SetFirstName(string firstname)
-        {
-            FirstName = firstname;
-        }
-
-        private void SetLastName(string lastname)
-        {
-            LastName = lastname;
-        }
-
-        private void SetCreatedAt(DateTime createdAt)
-        {
-            CreatedAt = createdAt;
-        }
-
-        public void SetActive(bool isActive) => this.IsActive = isActive;
-
         public string FullName => this.FirstName + " " + this.LastName;
     }
 }

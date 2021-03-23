@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace SharePostApp.API.Extensions
 {
-    public static class Extensions
+    public static class SwaggerExtensions
     {
         public static void AddSwagger(this IServiceCollection services)
         {
