@@ -52,6 +52,7 @@ namespace SharePostApp.DB
                     Id = 30,
                     FirstName = "test",
                     LastName = "user",
+                    Email = "test@test.com",
                     CreatedAt = DateTime.UtcNow,
                     IsActive = true,
                     PasswordHash =  BC.HashPassword("123456")

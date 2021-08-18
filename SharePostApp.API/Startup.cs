@@ -34,6 +34,17 @@ namespace SharePostApp.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    policyBuilder =>
+                    {
+                        policyBuilder
+                            .SetIsOriginAllowed(_ => true)
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
             services.AddControllers(opts => {
                 opts.Filters.Add(typeof(ValidationFilter));
             });
@@ -51,6 +62,7 @@ namespace SharePostApp.API
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseRouting();
 

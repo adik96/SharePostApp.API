@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SharePostApp.INFRASTRUCTURE.Commands;
 using SharePostApp.INFRASTRUCTURE.Queries;
